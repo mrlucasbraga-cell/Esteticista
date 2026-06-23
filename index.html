@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="200x200" href="estetica-icone.png">
+
+    <title>Nayara Rodrigues | Estética Avançada e Bem-Estar de Alto Padrão</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- ScrollReveal para animações de rolagem -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <style>
+        :root {
+            --bg: #FFF5F6; /* Fundo Claro Rosa Bebê Bem Suave */
+            --bg-secondary: #FFF9FA; /* Fundo Secundário ainda mais suave */
+            --card-dark: #FFFFFF; /* Cards agora são brancos e iluminados */
+            --card-light: #2C1E21; /* Inversão do card de depoimento para contraste premium */
+            --gold: #E29FA9; /* Rosa Antigo / Rose Gold para botões e destaques */
+            --gold-light: #8A5861; /* Tom Rosado Escuro para Títulos e Destaques de texto */
+            --gold-dark: #F2C6CD; /* Rosa bebê intermediário para bordas e sombras */
+            --text-white: #3A2A2D; /* Texto principal agora é escuro (marrom acinzentado) */
+            --text-dark: #FFFFFF; /* Texto claro usado dentro dos cards escuros */
+            --text-muted: #614E51; /* Descrição Texto em tom neutro escuro */
+            --border: rgba(226, 159, 169, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-white);
+            background: linear-gradient(180deg, rgba(255, 245, 246, 0.9) 0%, rgba(255, 235, 238, 0.95) 100%), url('background.png');
+            background-attachment: fixed;
+            overflow-x: hidden;
+            position: relative;
+            
+            /* CSS ANTI-COPIA (Bloqueia seleção de texto) */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Impede o clique e arraste de imagens */
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
+        }
+
+        .container {
+            width: min(1140px, 90%);
+            margin: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+
+        /* --- HERO SECTION COM RECORTE E IMAGEM (background2 apenas aqui) --- */
+        .hero-outer {
+            position: relative;
+            background: linear-gradient(180deg, rgba(255, 245, 246, 0.85) 0%, rgba(255, 235, 238, 0.95) 100%), url('background2.png');
+            background-size: cover;
+            background-position: center;
+            padding-bottom: 100px;
+            clip-path: ellipse(140% 100% at 50% 0%);
+        }
+
+        /* Iluminação radial de fundo no topo */
+        .hero-outer::after {
+            content: "";
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(226, 159, 169, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 50px;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        .hero-image-box {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-box img { /* Tamanho da capa logo */
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            object-fit: contain;
+            animation: floatStatue 6s ease-in-out infinite;
+            filter: drop-shadow(0 15px 25px rgba(226, 159, 169, 0.3));
+        }
+
+        .hero-text-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .main-logo-wrapper {
+            margin-bottom: 15px;
+        }
+
+        .main-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            color: var(--gold-light);
+            line-height: 1;
+            letter-spacing: -2px;
+            font-weight: 300;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #A36B74;
+            margin-bottom: 35px;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .hero-description i {
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        /* --- BOTÕES --- */
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #FFF0F2 0%, #E29FA9 100%);
+            color: #2C1E21;
+            padding: 14px 36px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(226, 159, 169, 0.4);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(226, 159, 169, 0.6);
+            background: linear-gradient(135deg, #E29FA9 0%, #FFF0F2 100%);
+        }
+
+        /* --- ÁREAS DE ATUAÇÃO --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header i {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            color: var(--gold-light);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .act-card {
+            background-color: var(--card-dark);
+            border: 1px solid rgba(226, 159, 169, 0.25);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 30px rgba(226, 159, 169, 0.1);
+        }
+
+        .act-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(226, 159, 169, 0.2);
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            background-color: #FFF0F2;
+        }
+
+        .icon-circle i {
+            color: var(--gold-light);
+            font-size: 1.8rem;
+        }
+
+        .act-card h3 {
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+        }
+
+        .act-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .center-action {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* --- SEÇÃO SOBRE (ABOUT) --- */
+        .about-section {
+            background: radial-gradient(circle at right, rgba(255, 220, 225, 0.5) 0%, transparent 60%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.8rem;
+            color: var(--gold-light);
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-img-box {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(226, 159, 169, 0.3);
+        }
+
+        .about-img-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- DEPOIMENTOS --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 55px 25px; 
+            margin-top: 40px;
+        }
+
+        .testi-card {
+            background-color: var(--card-light);
+            color: var(--text-dark);
+            border-radius: 12px;
+            padding: 50px 30px 30px 30px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(44, 30, 33, 0.15);
+        }
+
+        .avatar-circle {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background-color: #FFF5F6;
+            position: absolute;
+            top: -37px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid #FFF5F6;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testi-card .quote-icon {
+            color: #F2C6CD;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .testi-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #E2D5D7;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testi-author {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            display: block;
+        }
+
+        /* --- FAQ & CONTATO --- */
+        .faq-contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+        }
+
+        .faq-wrapper .faq-item {
+            background-color: #FFFFFF;
+            border-bottom: 1px solid rgba(226, 159, 169, 0.3);
+            margin-bottom: 10px;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(226, 159, 169, 0.05);
+        }
+
+        .faq-trigger {
+            width: 100%;
+            padding: 20px;
+            background: none;
+            border: none;
+            color: var(--gold-light);
+            text-align: left;
+            font-size: 1.05rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .faq-trigger span {
+            color: var(--gold);
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-content {
+            max-height: 200px;
+            padding-bottom: 20px;
+        }
+
+        .faq-item.active .faq-trigger span {
+            transform: rotate(45deg);
+        }
+
+        .side-contact-box {
+            background-color: transparent;
+            border-left: 1px solid rgba(226, 159, 169, 0.3);
+            padding-left: 40px;
+        }
+
+        .side-contact-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--gold-light);
+        }
+
+        .side-contact-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #FFFFFF;
+            font-weight: 500;
+            margin-bottom: 15px;
+            transition: opacity 0.2s ease;
+        }
+
+        .contact-link:hover {
+            opacity: 0.9;
+        }
+
+        .contact-link.wp { background-color: #9C5D67; } /* Tom elegante harmonizado de rosa queimado */
+        .contact-link.ml { background-color: #FFFFFF; color: var(--gold-light); border: 1px solid rgba(226, 159, 169, 0.4); box-shadow: 0 5px 15px rgba(226, 159, 169, 0.05); }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 60px 0;
+        }
+
+        .footer-card {
+            background: linear-gradient(135deg, #FFF0F2 0%, #E29FA9 100%);
+            border-radius: 16px;
+            padding: 40px;
+            color: #2C1E21;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 0.8fr;
+            gap: 30px;
+            align-items: center;
+            box-shadow: 0 15px 40px rgba(226, 159, 169, 0.3);
+        }
+
+        .footer-info-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-info-left i {
+            font-size: 2.2rem;
+            color: #614E51;
+        }
+
+        .footer-info-left p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #2C1E21;
+        }
+
+        .footer-channels {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #4A3A3D;
+        }
+
+        .footer-channels i {
+            margin-right: 8px;
+            color: #614E51;
+        }
+
+        .footer-channels a {
+            color: #4A3A3D;
+            text-decoration: none;
+        }
+
+        .btn-dark-footer {
+            background-color: #2C1E21;
+            color: #FFF5F6;
+            text-align: center;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease;
+            display: inline-block;
+            justify-self: end;
+        }
+
+        .btn-dark-footer:hover {
+            background-color: #443033;
+        }
+
+        /* --- ANIMAÇÕES --- */
+        @keyframes floatStatue {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 992px) {
+            .hero-grid, .grid-3, .testimonials-grid, .faq-contact-grid, .footer-card, .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-image-box {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            .hero-text-box {
+                align-items: center;
+                text-align: center;
+            }
+            .side-contact-box {
+                border-left: none;
+                padding-left: 0;
+                margin-top: 40px;
+            }
+            .btn-dark-footer {
+                justify-self: start;
+            }
+            .about-img-box {
+                order: -1;
+                max-width: 450px;
+                margin: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO SECTION -->
+    <div class="hero-outer">
+        <section class="container hero-grid">
+            <div class="hero-image-box">
+                <img src="estetica-icone.png" alt="Estética Avançada e Personalizada de Alto Padrão">
+            </div>
+
+            <div class="hero-text-box">
+                <div class="main-logo-wrapper">
+                    <div class="main-logo">NR</div>
+                </div>
+                
+                <h1 class="hero-title">Nayara Rodrigues</h1>
+                <div class="hero-subtitle">Estética Avançada e Cosmetologia de Alto Padrão</div>
+                
+                <div class="hero-description">
+                    <i class="fa-solid fa-sparkles"></i>
+                    <span>Protocolos exclusivos, alta tecnologia clínica e o cuidado personalizado que sua pele e autoestima merecem.</span>
+                </div>
+                
+                <a href="#contato" class="btn-gold">
+                    <i class="fa-solid fa-calendar-check"></i> Agendar Avaliação Exclusiva
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- ÁREAS DE ATUAÇÃO -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Protocolos e Especialidades</h2>
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+
+            <div class="grid-3">
+                <div class="act-card">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-face-smile-beam"></i>
+                    </div>
+                    <h3>Estética Facial</h3>
+                    <p>Gerenciamento do envelhecimento, limpeza de pele premium, peelings químicos regeneradores e tratamentos avançados para melasma e acne.</p>
+                </div>
+
+                <div class="act-card">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-child-female"></i>
+                    </div>
+                    <h3>Estética Corporal</h3>
+                    <p>Protocolos de alta performance para redução de gordura localizada, combate à flacidez, celulite e estrias através de associações tecnológicas.</p>
+                </div>
+
+                <div class="act-card">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3>Rejuvenescimento</h3>
+                    <p>Procedimentos minimamente invasivos focados na estimulação natural de colágeno, bioestimuladores e hidratação profunda da barreira cutânea.</p>
+                </div>
+            </div>
+
+            <div class="center-action">
+                <a href="#contato" class="btn-gold">
+                    <i class="fa-solid fa-hand-holding-droplet"></i> Solicitar Atendimento VIP
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE A ESTETICISTA -->
+    <section class="about-section">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>Nayara Rodrigues</h2>
+                <p>Com sólida bagagem e anos de dedicação à estética integrativa e cosmetologia, Nayara Rodrigues é referência em tratamentos personalizados de alto padrão, aliando o rigor científico à sensibilidade estética.</p>
+                <p>A clínica oferece uma estrutura sofisticada de acolhimento premium, privacidade restrita e tecnologias de última geração, pensadas estrategicamente para realçar a sua beleza natural e promover bem-estar profundo.</p>
+                <p>O foco primordial é o respectivo à sua individualidade. Cada plano de tratamento é traçado minuciosamente após uma análise detalhada da sua pele e organismo, transformando insatisfações em autoconfiança e vitalidade cutânea.</p>
+            </div>
+            <div class="about-img-box">
+                <img src="foto-da-esteticista.png" alt="Nayara Rodrigues Esteticista">
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Resultados e Feedbacks</h2>
+                <i class="fa-solid fa-star"></i>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Card 1 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=60" alt="Cliente Satisfeita">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Uma profissional brilhante. Iniciei um protocolo para melasma pioneiro que me incomodava há anos, e o direcionamento e cuidado da Nayara foram cruciais para devolver a uniformidade e o brilho da minha pele."</p>
+                    <span class="testi-author">— M.S.A., Diretora Executiva</span>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60" alt="Cliente Satisfeito">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"O tratamento corporal com a Nayara superou todas as minhas expectativas. A sensibilidade técnica e o uso das tecnologias certas transformaram meus resultados da academia e minha definição corporal."</p>
+                    <span class="testi-author">— Lucas F., Comerciante</span>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=60" alt="Cliente Satisfeita">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Estava com a pele extremamente cansada e com linhas de expressão evidentes devido ao estresse corporativo. Encontrei no consultório da Nayara um refúgio e o tratamento de colágeno perfeito para renovar meu rosto."</p>
+                    <span class="testi-author">— Dra. Amanda R., Advogada Corporativa</span>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=60" alt="Cliente Satisfeito">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Profissionalismo impecável. O cuidado constante com as normas de biossegurança e o respeito à individualidade da minha pele me chamaram atenção desde o primeiro dia. Recomendo de olhos fechados."</p>
+                    <span class="testi-author">— Carlos H., Empresário</span>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&auto=format&fit=crop&q=60" alt="Cliente Satisfeita">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Os tratamentos de rejuvenescimento facial e a mentoria home care me ajudaram a montar uma rotina limpa, eficiente e assertiva. Minha pele hoje é outra, muito mais firme e radiante."</p>
+                    <span class="testi-author">— R. Albuquerque, Investidora</span>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=60" alt="Cliente Satisfeito">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Ética, honestidade técnica e precisão nos resultados. Ela explica cada etapa do protocolo sem falsas promessas milagrosas e entrega exatamente o que a pele precisa para se reestruturar."</p>
+                    <span class="testi-author">— J. Henrique, Produtor Agrícola</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERGUNTAS FREQUENTES & CONTATO -->
+    <section id="contato">
+        <div class="container faq-contact-grid">
+            
+            <div class="faq-wrapper">
+                <h2 style="font-size: 2.2rem; color: var(--gold-light); margin-bottom: 25px;">Dúvidas Frequentes</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-trigger">Como é realizada a primeira avaliação estética? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>A primeira sessão consiste em uma anamnese detalhada e exame clínico da pele (facial ou corporal), onde avaliamos disfunções estéticas, fototipo, hábitos e traçamos um plano de tratamento personalizado.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">Os procedimentos exigem tempo de recuperação (down-time)? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>Depende do protocolo escolhido. A maioria dos nossos tratamentos permite o retorno imediato às atividades diárias. Procedimentos mais profundos, como alguns peelings, recebem orientações específicas de pós-tratamento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">Quais são as formas de pagamento para os pacotes de tratamento? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>Trabalhamos com cartões de crédito e débito, PIX e oferecemos opções de parcelamento facilitadas para planos e pacotes de tratamento de médio a longo prazo.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">Qual é o intervalo ideal entre as sessões corporais e faciais? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>O intervalo varia conforme o metabolismo celular e o objetivo do tratamento. Limpezas de pele costumam ser mensais, enquanto protocolos corporais ou de indução de colágeno podem ser semanais ou quinzenais.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-contact-box">
+                <h3>Deseja uma pele radiante e renovada?</h3>
+                <p>Entre em contato através do nosso canal seguro para garantir sua vaga e desfrutar do nosso atendimento VIP.</p>
+                
+                <a href="#" class="contact-link wp">
+                    <i class="fa-brands fa-whatsapp"></i> Agendar via WhatsApp
+                </a>
+                <a href="#" class="contact-link ml">
+                    <i class="fa-regular fa-envelope"></i> Contato via E-mail
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-card">
+                <div class="footer-info-left">
+                    <i class="fa-solid fa-wand-sparkles"></i>
+                    <p>Agende sua avaliação e invista na sua beleza e autoestima com atendimento estratégico.<br><span style="font-size: 0.85rem; font-weight: normal; opacity: 0.8;">Atendimento premium e personalizado com hora marcada.</span></p>
+                </div>
+                
+                <div class="footer-channels">
+                    <div><i class="fa-solid fa-phone"></i> (31) 98765-4321</div>
+                    <div><i class="fa-solid fa-envelope"></i> <a href="mailto:contato@nayararodriguesestetica.com.br">contato@nayararodriguesestetica.com.br</a></div>
+                    <div><i class="fa-solid fa-globe"></i> <a href="http://www.nayararodriguesestetica.com.br" target="_blank">www.nayararodriguesestetica.com.br</a></div>
+                </div>
+                
+                <a href="#contato" class="btn-dark-footer">
+                    <i class="fa-solid fa-sparkles"></i> Espaço VIP
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica simples do FAQ Accordion
+        document.querySelectorAll('.faq-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const item = trigger.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Configuração das animações do ScrollReveal
+        const sr = ScrollReveal({
+            origin: 'bottom',
+            distance: '40px',
+            duration: 1000,
+            delay: 200,
+            reset: false 
+        });
+
+        // Animações da seção topo (Hero)
+        sr.reveal('.hero-image-box', { origin: 'left', distance: '60px' });
+        sr.reveal('.main-logo-wrapper', { delay: 100 });
+        sr.reveal('.hero-title', { delay: 300 });
+        sr.reveal('.hero-subtitle', { delay: 450 });
+        sr.reveal('.hero-description', { delay: 600 });
+        sr.reveal('.hero-text-box .btn-gold', { delay: 750 });
+
+        // Títulos de todas as seções
+        sr.reveal('.section-header', { distance: '20px' });
+
+        // Cards de Áreas de Atuação
+        sr.reveal('.act-card', { interval: 200 });
+        sr.reveal('.center-action', { delay: 400 });
+
+        // Seção Sobre a Esteticista
+        sr.reveal('.about-text p', { interval: 150 });
+        sr.reveal('.about-img-box', { origin: 'right', distance: '50px', delay: 300 });
+
+        // Cards de Depoimentos
+        sr.reveal('.testi-card', { interval: 150, distance: '50px' });
+
+        // FAQ e Bloco de Contato Lateral
+        sr.reveal('.faq-item', { interval: 150 });
+        sr.reveal('.side-contact-box', { origin: 'right', distance: '40px', delay: 200 });
+
+        // Rodapé
+        sr.reveal('.footer-card', { distance: '30px' });
+
+
+        /* ==========================================================================
+           TRAVAS ADICIONAIS DE SEGURANÇA AVANÇADAS (ANTI-CÓPIA, ANTI-F12, ANTI-MAC)
+           ========================================================================== */
+
+        // 1. Bloqueia o Clique com o Botão Direito do Mouse
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. Trava Suprema de Teclado (Windows e Mac)
+        document.addEventListener('keydown', function(event) {
+            // Bloqueia F12
+            if (event.key === "F12") {
+                event.preventDefault();
+                return false;
+            }
+
+            // Detecta teclas de modificação (Ctrl no Windows, Cmd no Mac)
+            const isModifier = event.ctrlKey || event.metaKey;
+            const key = event.key.toLowerCase();
+
+            // Bloqueia C (Copiar), U (Ver Código Fonte), S (Salvar), P (Imprimir), A (Selecionar Tudo)
+            if (isModifier && (key === 'c' || key === 'u' || key === 's' || key === 'p' || key === 'a')) {
+                event.preventDefault();
+                return false;
+            }
+
+            // Bloqueia Inspecionar Elemento no Windows (Ctrl+Shift+I ou J) e Mac (Cmd+Opt+I ou J)
+            if (isModifier && (event.shiftKey || event.altKey) && (key === 'i' || key === 'j' || key === 'c')) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        // 3. Sistema Ativo Anti-Cópia / Limpeza de Clipboard Contínua
+        document.addEventListener('copy', function(event) {
+            event.preventDefault();
+            if (event.clipboardData) {
+                event.clipboardData.setData('text/plain', 'Conteúdo Protegido por Direitos Autorais e Profissionais.');
+            }
+        });
+    </script>
+</body>
+
+</html>
